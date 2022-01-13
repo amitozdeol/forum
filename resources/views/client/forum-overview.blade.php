@@ -29,8 +29,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @if (count($forum->discussions) > 0)
-                    @foreach ($forum->discussions as $topic)
+                  @if (count($forumDiscussions) > 0)
+                    @foreach ($forumDiscussions as $topic)
                     <tr>
                     <td>
                       <h3 class="h6">
@@ -70,28 +70,13 @@
       </div>
 
       <div class="mb-3 clearfix">
-        <nav aria-label="Navigate post pages" class="float-lg-right">
-          <ul class="pagination pagination-sm mb-lg-0">
-            <li class="page-item active">
-              <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item"><a href="#" class="page-link">2</a></li>
-            <li class="page-item"><a href="#" class="page-link">3</a></li>
-            <li class="page-item"><a href="#" class="page-link">4</a></li>
-            <li class="page-item"><a href="#" class="page-link">5</a></li>
-            <li class="page-item">
-              <a href="#" class="page-link">&hellip;</a>
-            </li>
-            <li class="page-item"><a href="#" class="page-link">9</a></li>
-            <li class="page-item"><a href="#" class="page-link">10</a></li>
-          </ul>
-        </nav>
+       {{ $forumDiscussions->withQueryString()->links()  }}
         <form action="" class="form-inline float-lg-left d-block d-sm-flex">
           <div class="mb-2 mb-sm-0 mr-2">Display posts from previous</div>
           <div class="form-group mr-2">
-            <label class="sr-only" for="select-time"> Time Period</label>
+            <label class="sr-only" for="time_period"> Time Period</label>
             <select
-              name="select-time"
+              name="time_period"
               id=""
               class="form-control form-control-sm"
             >
@@ -100,19 +85,20 @@
               <option value="week">1 week</option>
               <option value="month">1 month</option>
               <option value="year">1 year</option>
+              <option value="lastYear">Last year</option>
             </select>
           </div>
 
           <div class="mb-2 mb-sm-0 mr-2">Sort by:</div>
           <div class="form-group mr-2">
-            <label class="sr-only" for="post-sort">Sort posts by:</label>
+            <label class="sr-only" for="post_type">Sort posts by:</label>
             <select
-              name="select-time"
+              name="post_type"
               id=""
               class="form-control form-control-sm"
             >
               <option value="author">Author</option>
-              <option value="post-time">Post time</option>
+              <option value="post_time">Post time</option>
               <option value="replies">Replies</option>
               <option value="subject">Subject</option>
               <option value="views">Views</option>
@@ -121,14 +107,14 @@
 
           <div class="mb-2 mb-sm-0 mr-2">Sort direction:</div>
           <div class="form-group mr-2">
-            <label class="sr-only" for="post-direct">Sort direct:</label>
+            <label class="sr-only" for="post_sort_by">Sort direct:</label>
             <select
-              name="select-time"
+              name="post_sort_by"
               id=""
               class="form-control form-control-sm"
             >
-              <option value="desending">Desending</option>
-              <option value="ascending">Ascending</option>
+              <option value="desc">Desending</option>
+              <option value="asc">Ascending</option>
             </select>
           </div>
           <button type="submit" class="btn btn-sm btn-primary">Sort</button>
